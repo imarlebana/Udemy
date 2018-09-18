@@ -20,4 +20,10 @@ public class ClienteDaoImpl implements IClienteDao {
     public List<Cliente> findAll() {
         return entityManager.createQuery(" Select c FROM Cliente c").getResultList();
     }
+
+    @Override
+    @Transactional()
+    public void save(Cliente cliente) {
+        entityManager.persist(cliente);
+    }
 }
