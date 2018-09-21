@@ -27,7 +27,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="cliente: ${clientes}">
-                        <td th:text="${cliente.id}"></td>
+                        <td th:text="${cliente.nombre}"></td>
                         <td th:text="${cliente.apellido}"></td>
                         <td th:text="${cliente.email}"></td>
                         <td th:text="${cliente.createAt}"></td>
@@ -36,6 +36,7 @@
                     </tr>
                     </tbody>
                 </table>
+                <nav th:replace="paginator-nav :: paginator"></nav>
             </div>
         </div>
     </div>

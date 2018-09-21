@@ -3,6 +3,8 @@ package com.cletus.springbootdatajpa.service;
 import com.cletus.springbootdatajpa.model.dao.IClienteDao;
 import com.cletus.springbootdatajpa.model.entity.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -19,6 +21,11 @@ public class ClienteServiceImpl implements  IClienteService {
     @Transactional
     public List<Cliente> findAll() {
         return (List<Cliente>)clienteDao.findAll();
+    }
+
+    @Override
+    public Page<Cliente> findAll(Pageable pageable) {
+        return clienteDao.findAll(pageable);
     }
 
     @Override
