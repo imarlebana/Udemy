@@ -1,6 +1,7 @@
 package com.cletus.facturacion.service;
 
 import com.cletus.facturacion.model.entity.Cliente;
+import com.cletus.facturacion.model.entity.Factura;
 import com.cletus.facturacion.model.entity.Producto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,4 +21,6 @@ public interface IClienteService {
     void delete(Long id);
 
     List<Producto> findByNombre(String term);
+
+    void saveFactura(Factura factura);
 }

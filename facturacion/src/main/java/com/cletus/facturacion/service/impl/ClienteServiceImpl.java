@@ -1,8 +1,10 @@
 package com.cletus.facturacion.service.impl;
 
 import com.cletus.facturacion.model.dao.IClienteDao;
+import com.cletus.facturacion.model.dao.IFacturaDao;
 import com.cletus.facturacion.model.dao.IProductoDao;
 import com.cletus.facturacion.model.entity.Cliente;
+import com.cletus.facturacion.model.entity.Factura;
 import com.cletus.facturacion.model.entity.Producto;
 import com.cletus.facturacion.service.IClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ public class ClienteServiceImpl implements IClienteService {
 
     @Autowired private IClienteDao clienteDao;
     @Autowired private IProductoDao productoDao;
+    @Autowired private IFacturaDao facturaDao;
 
     @Override
     @Transactional
@@ -59,5 +62,11 @@ public class ClienteServiceImpl implements IClienteService {
     @Override
     public List<Producto> findByNombre(String term) {
         return productoDao.findByNombre(term);
+    }
+
+    @Override
+    @Transactional
+    public void saveFactura(Factura factura) {
+        facturaDao.save(factura);
     }
 }
