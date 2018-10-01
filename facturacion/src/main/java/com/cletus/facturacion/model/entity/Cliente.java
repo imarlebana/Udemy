@@ -63,4 +63,9 @@ public class Cliente implements Serializable {
     public void prePersist(){
         createAt = new Date();
     }*/
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellido;
+    }
 }

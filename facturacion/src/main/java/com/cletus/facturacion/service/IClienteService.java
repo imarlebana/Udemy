@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IClienteService {
 
@@ -23,4 +24,9 @@ public interface IClienteService {
     List<Producto> findByNombre(String term);
 
     void saveFactura(Factura factura);
+
+    Optional<Producto> findProductoById(Long id);
+
+    Optional<Factura> findFacturaById(Long id);
+
 }
