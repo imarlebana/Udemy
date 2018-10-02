@@ -20,9 +20,9 @@
                 </ul>
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-primary" th:text="'Datos de la factura'"></li>
-                    <li class="list-group-item" th:text="'Folio: '${factura.id}"></li>
-                    <li class="list-group-item" th:text="'Descripcion: '${factura.descripcion}"></li>
-                    <li class="list-group-item" th:text="'Fecha: '${factura.createAt}"></li>
+                    <li class="list-group-item" th:text="'Folio: ' + ${factura.id}"></li>
+                    <li class="list-group-item" th:text="'Descripcion: ' + ${factura.descripcion}"></li>
+                    <li class="list-group-item" th:text="'Fecha: ' + ${factura.createAt}"></li>
                 </ul>
 
             </div>
