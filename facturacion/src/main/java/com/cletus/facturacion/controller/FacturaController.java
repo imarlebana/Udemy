@@ -92,16 +92,35 @@ public class FacturaController {
     public String ver(@PathVariable Long id, Model model, RedirectAttributes flash){
 
 
-        Optional<Factura> opt = clienteService.findFacturaById(id);
+        //Optional<Factura> opt = clienteService.findFacturaById(id);
 
+//        if(!opt.isPresent()){
+//            flash.addFlashAttribute("error","la factura no existe.");
+//            return "redirect:/listar";
+//        }
+
+//        Factura factura = opt.get();
+        Factura factura = clienteService.fetchFacturaById(id);
+        model.addAttribute("titulo", "Factura: ".concat(factura.getDescripcion()));
+        model.addAttribute("factura",factura);
+        return "factura/ver";
+    }
+
+    @GetMapping("/eliminar/{id}")
+    public String eliminar(@PathVariable(value="id") Long id,RedirectAttributes flash){
+        Optional<Factura> opt = clienteService.findFacturaById(id);
         if(!opt.isPresent()){
-            flash.addFlashAttribute("error","la factura no existe.");
+            flash.addFlashAttribute("error","No existe la factura");
             return "redirect:/listar";
         }
 
         Factura factura = opt.get();
-        model.addAttribute("titulo", "Factura: ".concat(factura.getDescripcion()));
-        model.addAttribute("factura",factura);
-        return "factura/ver";
+        clienteService.deleteFactura(id);
+        flash.addFlashAttribute("success","Factura eliminada con exito");
+
+        return "redirect:/ver/" + factura.getId();
+
+
+
     }
 }

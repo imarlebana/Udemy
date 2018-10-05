@@ -19,15 +19,17 @@ import java.util.Optional;
 @Service
 public class ClienteServiceImpl implements IClienteService {
 
-
-    @Autowired private IClienteDao clienteDao;
-    @Autowired private IProductoDao productoDao;
-    @Autowired private IFacturaDao facturaDao;
+    @Autowired
+    private IClienteDao clienteDao;
+    @Autowired
+    private IProductoDao productoDao;
+    @Autowired
+    private IFacturaDao facturaDao;
 
     @Override
     @Transactional
     public List<Cliente> findAll() {
-        return (List<Cliente>)clienteDao.findAll();
+        return (List<Cliente>) clienteDao.findAll();
     }
 
     @Override
@@ -46,11 +48,16 @@ public class ClienteServiceImpl implements IClienteService {
     public Cliente findOne(Long id) {
         Optional<Cliente> opt = clienteDao.findById(id);
         Cliente cliente = new Cliente();
-        if (opt.isPresent()){
+        if (opt.isPresent()) {
             cliente = opt.get();
         }
 
         return cliente;
+    }
+
+    @Override
+    public Cliente fetchByIdWithFac(Long id) {
+        return clienteDao.fetchByIdWithFactura(id);
     }
 
     @Override
@@ -77,5 +84,15 @@ public class ClienteServiceImpl implements IClienteService {
     @Override
     public Optional<Factura> findFacturaById(Long id) {
         return facturaDao.findById(id);
+    }
+
+    @Override
+    public void deleteFactura(Long id) {
+        facturaDao.deleteById(id);
+    }
+
+    @Override
+    public Factura fetchFacturaById(Long id) {
+        return facturaDao.fetchByIdWithClienteWithItemFacturaWithProducto(id);
     }
 }
